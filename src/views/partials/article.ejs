@@ -1,0 +1,11 @@
+<% if(articles != null) { %>
+    <% Object.keys(articles).forEach(function(article, index) { %>
+        <a href="https://www.theverge.com/2021/11/5/22765098/kroger-bitcoin-cash-cryptocurrency-hoax-pump-dump" class="news__card">
+            <img src="<%- article.urlToImage %>" alt="<%- article.title %>">
+            <h2>"A fake press release claiming Kroger accepts crypto reached the retailer’s own webpage"</h2>
+            <p>"A crypto hoax claimed Kroger is accepting Bitcoin Cash. The fake press release was similar to one targeting Walmart earlier this year. The retailer quickly confirmed it’s fake, but not before the cryptocurrency’s price spiked by $30."</p>
+        </a>
+    <% }) %>   
+    <% } else { %>
+        No posts found.
+    <% } %>
