@@ -5,10 +5,11 @@ require('dotenv').config()
 
 const apiKey = process.env.API_KEY
 
-// Top headlines for India
+// Latest India news (NewsAPI's top-headlines?country=in currently returns
+// no sources, so use the /everything endpoint sorted by most recent)
 newsRouter.get('', async (req, res) => {
     try {
-        const newsAPI = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${apiKey}`)
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=india&language=en&sortBy=publishedAt&apiKey=${apiKey}`)
         res.render('news', { articles: newsAPI.data.articles })
     } catch (err) {
         logError(err)
