@@ -1,22 +1,22 @@
 {
   "name": "news",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "InShort Top News — Express app that renders top headlines from NewsAPI",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.24.0",
-    "body-parser": "^1.19.0",
-    "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^3.1.4"
   }
 }
