@@ -17,11 +17,11 @@
         <div class="news">
             <% if(articles != null) { %>
             <% articles.forEach(function(article, index) { %>
-                <a href="<%- article.url %>" class="news__card">
-                    <h3 style="text-align: center;"><strong><%- article.source.name %></strong></h3>
-                    <img src="<%- article.urlToImage %>" alt="<%- article.title %>">
-                    <h2><%- article.title %></h2>
-                    <p><%- article.description %></p>
+                <a href="<%= article.url %>" class="news__card">
+                    <h3 style="text-align: center;"><strong><%= article.source.name %></strong></h3>
+                    <img src="<%= article.urlToImage %>" alt="<%= article.title %>">
+                    <h2><%= article.title %></h2>
+                    <p><%= article.description %></p>
                 </a>
             <% }) %>
             <% } else { %>

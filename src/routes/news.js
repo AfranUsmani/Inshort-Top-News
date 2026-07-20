@@ -3,48 +3,41 @@ const newsRouter = express.Router()
 const axios = require('axios')
 require('dotenv').config()
 
-newsRouter.get('', async(req, res) => {
+const apiKey = process.env.API_KEY
+
+// Top headlines for India
+newsRouter.get('', async (req, res) => {
     try {
-        const apiKey= process.env.API_KEY;
         const newsAPI = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${apiKey}`)
-        res.render('news', { articles : newsAPI.data.articles })
+        res.render('news', { articles: newsAPI.data.articles })
     } catch (err) {
-        if(err.response) {
-            console.log(err.response.data)
-            console.log(err.response.status)
-            console.log(err.response.headers)
-            res.render('news', { articles : null })
-        } else if(err.requiest) {
-            res.render('news', { articles : null })
-            console.log(err.requiest)
-        } else {
-            res.render('news', { articles : null })
-            console.error('Error', err.message)
-        }
-    } 
+        logError(err)
+        res.render('news', { articles: null })
+    }
 })
 
-newsRouter.post('', async(req, res) => {
-    let search = req.body.search
+// Keyword search
+newsRouter.post('', async (req, res) => {
+    const search = req.body.search
     try {
-        const apiKey= process.env.API_KEY;
-        const newsAPI = await axios.get(`https://newsapi.org/v2/top-headlines?country=${search}&apiKey=${apiKey}`)
-        res.render('newsSearch', { articles : newsAPI.data.articles })
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&apiKey=${apiKey}`)
+        res.render('newsSearch', { articles: newsAPI.data.articles })
     } catch (err) {
-        if(err.response) {
-            res.render('newsSearch', { articles : null })
-            console.log(err.response.data)
-            console.log(err.response.status)
-            console.log(err.response.headers)
-        } else if(err.requiest) {
-            res.render('newsSearch', { articles : null })
-            console.log(err.requiest)
-        } else {
-            res.render('newsSearch', { articles : null })
-            console.error('Error', err.message)
-        }
-    } 
+        logError(err)
+        res.render('newsSearch', { articles: null })
+    }
 })
 
+function logError(err) {
+    if (err.response) {
+        console.log(err.response.data)
+        console.log(err.response.status)
+        console.log(err.response.headers)
+    } else if (err.request) {
+        console.log(err.request)
+    } else {
+        console.error('Error', err.message)
+    }
+}
 
-module.exports = newsRouter 
+module.exports = newsRouter
