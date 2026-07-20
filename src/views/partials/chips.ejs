@@ -1,0 +1,14 @@
+<%
+    var cats = [];
+    (articles || []).forEach(function (a) {
+        if (a.category && cats.indexOf(a.category) === -1) cats.push(a.category);
+    });
+%>
+<% if (cats.length) { %>
+<nav class="chips" aria-label="Filter by category">
+    <button class="chip is-active" data-cat="all">All</button>
+    <% cats.forEach(function (c) { %>
+        <button class="chip" data-cat="<%= c %>"><%= c %></button>
+    <% }) %>
+</nav>
+<% } %>

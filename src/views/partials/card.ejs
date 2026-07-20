@@ -1,0 +1,19 @@
+<article class="card" data-category="<%= article.category || 'Top' %>">
+    <a class="card__link" href="<%= article.url %>" target="_blank" rel="noopener noreferrer">
+        <% if (article.urlToImage) { %>
+        <div class="card__media">
+            <img src="<%= article.urlToImage %>" alt="" loading="lazy"
+                 onerror="this.closest('.card__media').classList.add('is-broken')">
+        </div>
+        <% } %>
+        <div class="card__body">
+            <div class="card__meta">
+                <% if (article.category) { %><span class="pill pill--<%= article.category.toLowerCase() %>"><%= article.category %></span><% } %>
+                <% if (article.source && article.source.name) { %><span class="card__source"><%= article.source.name %></span><% } %>
+            </div>
+            <h2 class="card__title"><%= article.title %></h2>
+            <p class="card__summary"><%= article.aiSummary %></p>
+            <span class="card__more">Read full story →</span>
+        </div>
+    </a>
+</article>

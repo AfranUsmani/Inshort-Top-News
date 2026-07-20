@@ -3,17 +3,21 @@ const newsRouter = express.Router()
 const axios = require('axios')
 require('dotenv').config()
 
+const { enhance } = require('../services/ai')
+
 const apiKey = process.env.API_KEY
+const HTTP = { timeout: 6000 }
 
 // Latest India news (NewsAPI's top-headlines?country=in currently returns
 // no sources, so use the /everything endpoint sorted by most recent)
 newsRouter.get('', async (req, res) => {
     try {
-        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=india&language=en&sortBy=publishedAt&apiKey=${apiKey}`)
-        res.render('news', { articles: newsAPI.data.articles })
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=india&language=en&sortBy=publishedAt&apiKey=${apiKey}`, HTTP)
+        const { items, briefing, aiEnabled } = await enhance(newsAPI.data.articles)
+        res.render('news', { articles: items, briefing, aiEnabled, query: null })
     } catch (err) {
         logError(err)
-        res.render('news', { articles: null })
+        res.render('news', { articles: [], briefing: null, aiEnabled: false, query: null })
     }
 })
 
@@ -21,11 +25,12 @@ newsRouter.get('', async (req, res) => {
 newsRouter.post('', async (req, res) => {
     const search = req.body.search
     try {
-        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&apiKey=${apiKey}`)
-        res.render('newsSearch', { articles: newsAPI.data.articles })
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&language=en&sortBy=publishedAt&apiKey=${apiKey}`, HTTP)
+        const { items, briefing, aiEnabled } = await enhance(newsAPI.data.articles)
+        res.render('news', { articles: items, briefing, aiEnabled, query: search })
     } catch (err) {
         logError(err)
-        res.render('newsSearch', { articles: null })
+        res.render('news', { articles: [], briefing: null, aiEnabled: false, query: search })
     }
 })
 
