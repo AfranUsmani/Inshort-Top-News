@@ -2,17 +2,21 @@ const Parser = require('rss-parser')
 
 // Live headlines from Google News RSS — real-time, free, no API key, no quota.
 const parser = new Parser({
-    timeout: 7000,
+    timeout: 5000, // fail before the serverless function times out
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; InShortNews/1.0)' },
 })
 
 const CACHE_TTL_MS = 10 * 60 * 1000
 const MAX_ARTICLES = 100
+const MAX_CACHE_ENTRIES = 200 // bound the per-instance cache (search terms vary)
 
 const cache = new Map()
 
-// Regions map to Google News editions (country + English). `world` uses the
-// World topic feed. All validated to return live, English-language headlines.
+// Regions map to Google News feeds. `world` uses the World topic feed.
+// English-language editions only exist for English-native countries (`cc`);
+// the rest have no English edition, so they use a name search (`q`) that
+// returns English headlines about that country. All validated to return
+// live results.
 const REGIONS = [
     { code: 'world', label: 'Worldwide', flag: '🌐' },
     { code: 'in', label: 'India', flag: '🇮🇳', cc: 'IN' },
@@ -20,12 +24,12 @@ const REGIONS = [
     { code: 'gb', label: 'United Kingdom', flag: '🇬🇧', cc: 'GB' },
     { code: 'ca', label: 'Canada', flag: '🇨🇦', cc: 'CA' },
     { code: 'au', label: 'Australia', flag: '🇦🇺', cc: 'AU' },
-    { code: 'ae', label: 'UAE', flag: '🇦🇪', cc: 'AE' },
     { code: 'sg', label: 'Singapore', flag: '🇸🇬', cc: 'SG' },
-    { code: 'de', label: 'Germany', flag: '🇩🇪', cc: 'DE' },
-    { code: 'fr', label: 'France', flag: '🇫🇷', cc: 'FR' },
-    { code: 'jp', label: 'Japan', flag: '🇯🇵', cc: 'JP' },
-    { code: 'cn', label: 'China', flag: '🇨🇳', cc: 'CN' },
+    { code: 'ae', label: 'UAE', flag: '🇦🇪', q: 'United Arab Emirates' },
+    { code: 'de', label: 'Germany', flag: '🇩🇪', q: 'Germany' },
+    { code: 'fr', label: 'France', flag: '🇫🇷', q: 'France' },
+    { code: 'jp', label: 'Japan', flag: '🇯🇵', q: 'Japan' },
+    { code: 'cn', label: 'China', flag: '🇨🇳', q: 'China' },
 ]
 const DEFAULT_REGION = 'world'
 
@@ -58,6 +62,7 @@ function categorize(title) {
 }
 
 // Google News titles are "Headline - Source"; split them apart.
+// Only split when a non-empty headline remains on the left.
 function splitTitle(rawTitle) {
     const t = clean(rawTitle)
     const idx = t.lastIndexOf(' - ')
@@ -87,23 +92,30 @@ async function fetchFeed(url) {
         .filter((it) => it && it.title && it.link)
         .slice(0, MAX_ARTICLES)
         .map(normalize)
+    // Bound the cache so varied search terms can't grow it without limit.
+    if (cache.size >= MAX_CACHE_ENTRIES) cache.delete(cache.keys().next().value)
     cache.set(url, { t: Date.now(), v: items })
     return items
+}
+
+// Resolve a region to its Google News feed URL.
+function regionUrl(code) {
+    const r = regionByCode(code)
+    if (r.code === 'world') return WORLD_URL
+    return r.cc ? editionUrl(r.cc) : searchUrl(r.q)
 }
 
 // A search term takes priority; otherwise fetch the chosen region's live feed.
 async function getNews({ region, search } = {}) {
     const term = clean(search)
-    if (term) return fetchFeed(searchUrl(term))
-    const r = regionByCode(region)
-    return fetchFeed(r.code === 'world' ? WORLD_URL : editionUrl(r.cc))
+    return fetchFeed(term ? searchUrl(term) : regionUrl(region))
 }
 
 // Relative time label, e.g. "just now", "23m ago", "4h ago", "2d ago", "14 Jul".
 function timeAgo(iso) {
     if (!iso) return ''
     const then = new Date(iso).getTime()
-    if (!then) return ''
+    if (Number.isNaN(then)) return ''
     const s = Math.max(0, Math.floor((Date.now() - then) / 1000))
     if (s < 60) return 'just now'
     const m = Math.floor(s / 60)

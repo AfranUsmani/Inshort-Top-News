@@ -30,18 +30,20 @@ if (themeBtn) {
     })
 }
 
-// 4. Category chip filtering.
+// 4. Category chip filtering (cards + the featured lead).
 document.addEventListener('click', function (e) {
     var chip = e.target.closest('.chip')
     if (!chip) return
 
     var cat = chip.getAttribute('data-cat')
     document.querySelectorAll('.chip').forEach(function (c) {
-        c.classList.toggle('is-active', c === chip)
+        var active = c === chip
+        c.classList.toggle('is-active', active)
+        c.setAttribute('aria-pressed', active ? 'true' : 'false')
     })
-    document.querySelectorAll('.card').forEach(function (card) {
-        var show = cat === 'all' || card.getAttribute('data-category') === cat
-        card.style.display = show ? '' : 'none'
+    document.querySelectorAll('.card, .featured').forEach(function (item) {
+        var show = cat === 'all' || item.getAttribute('data-category') === cat
+        item.style.display = show ? '' : 'none'
     })
 })
 
