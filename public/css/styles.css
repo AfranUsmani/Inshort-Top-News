@@ -464,6 +464,8 @@ a { color: inherit; }
 .card[data-category="Health"]     { border-left-color: #0f9488; }
 .card[data-category="Politics"]   { border-left-color: #d64933; }
 .card[data-category="World"]      { border-left-color: #2563eb; }
+.card[data-category="AI/ML"]                 { border-left-color: #7c3aed; }
+.card[data-category="Agentic/Generative AI"] { border-left-color: #c026d3; }
 
 .card:hover {
     transform: translateY(-4px);
@@ -518,6 +520,8 @@ a { color: inherit; }
 .pill--sports     { color: #b8860b; background: rgba(184,134,11,.14); border-color: rgba(184,134,11,.3); }
 .pill--science    { color: #7b3ff2; background: rgba(123,63,242,.12); border-color: rgba(123,63,242,.28); }
 .pill--health     { color: #0f9488; background: rgba(15,148,136,.12); border-color: rgba(15,148,136,.28); }
+.pill--ai-ml                 { color: #7c3aed; background: rgba(124,58,237,.14); border-color: rgba(124,58,237,.3); }
+.pill--agentic-generative-ai { color: #c026d3; background: rgba(192,38,211,.14); border-color: rgba(192,38,211,.3); }
 
 .card__source {
     font-size: .78rem;

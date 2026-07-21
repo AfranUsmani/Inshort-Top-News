@@ -9,7 +9,7 @@
     <div class="featured__body">
         <span class="featured__flag">★ Top story</span>
         <div class="featured__meta">
-            <% if (article.category) { %><span class="pill pill--<%= article.category.toLowerCase() %>"><%= article.category %></span><% } %>
+            <% if (article.category) { %><span class="pill pill--<%= article.category.toLowerCase().replace(/[^a-z0-9]+/g, '-') %>"><%= article.category %></span><% } %>
             <% if (article.source && article.source.name) { %><span class="card__source"><%= article.source.name %></span><% } %>
             <% if (typeof timeAgo === 'function' && article.publishedAt) { %><span class="card__time"><%= timeAgo(article.publishedAt) %></span><% } %>
         </div>
