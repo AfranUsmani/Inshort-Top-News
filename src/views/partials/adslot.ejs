@@ -1,0 +1,14 @@
+<%
+    // Reusable ad slot. Renders a labelled placeholder until you paste your
+    // ad-network unit (e.g. AdSense/Ezoic) below and add the network's domains
+    // to the Content-Security-Policy in app.js (script-src / frame-src).
+    var _adLabel = (typeof label !== 'undefined' && label) ? label : 'Advertisement';
+%>
+<aside class="adslot" aria-label="<%= _adLabel %>">
+    <span class="adslot__tag"><%= _adLabel %></span>
+    <!-- Paste your ad unit here, e.g.:
+         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX"
+              data-ad-slot="XXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    -->
+    <div class="adslot__ph">Your ad here</div>
+</aside>

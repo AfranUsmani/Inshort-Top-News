@@ -9,6 +9,7 @@
         <% if (articles && articles.length) { %>
             <%- include('./partials/hero.ejs') %>
             <%- include('./partials/featured.ejs', { article: articles[0] }) %>
+            <%- include('./partials/adslot.ejs', { label: 'Advertisement' }) %>
             <%- include('./partials/chips.ejs') %>
             <section class="news" id="news">
                 <% articles.forEach(function(article, i){ if (i === 0) return; %>
@@ -18,6 +19,7 @@
         <% } else { %>
             <%- include('./partials/empty.ejs') %>
         <% } %>
+        <%- include('./partials/newsletter.ejs') %>
     </main>
 
     <button id="to-top" class="to-top" aria-label="Back to top" title="Back to top">

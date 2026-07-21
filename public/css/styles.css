@@ -711,3 +711,75 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
     .to-top { transition: opacity .2s ease; }
 }
+
+/* ---------- Newsletter ---------- */
+.promo {
+    margin: 34px 0 26px;
+    padding: 26px 28px;
+    border-radius: var(--radius);
+    background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 12%, var(--surface)), var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.promo__title { margin: 0 0 4px; font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
+.promo__sub { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+.promo__form { display: flex; gap: 8px; flex-wrap: wrap; }
+.promo__input {
+    font: inherit;
+    font-size: .95rem;
+    padding: 11px 16px;
+    min-width: 240px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+}
+.promo__input:focus {
+    outline: 0;
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.promo__btn {
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 22px;
+    color: #fff;
+    background: linear-gradient(150deg, var(--accent), #ff7a5c);
+    transition: transform .12s, filter .18s;
+}
+.promo__btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.promo__ok { margin: 0; font-weight: 600; color: #1a7f5a; }
+.promo__err { margin: 6px 0 0; flex-basis: 100%; color: var(--accent-ink); font-size: .85rem; }
+@media (max-width: 620px) { .promo__input { min-width: 0; flex: 1; } }
+
+/* ---------- Ad slot (placeholder until a unit is pasted) ---------- */
+.adslot {
+    position: relative;
+    margin: 0 0 26px;
+    min-height: 90px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    border: 1px dashed color-mix(in srgb, var(--ink) 15%, var(--line));
+    background: var(--surface-2);
+}
+.adslot__tag {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: .7;
+}
+.adslot__ph { color: var(--ink-soft); font-size: .9rem; opacity: .6; }

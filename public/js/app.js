@@ -47,12 +47,23 @@ document.addEventListener('click', function (e) {
     })
 })
 
-// 5. Refresh the live feed when returning to a tab that's been idle > 10 min.
+// 5. Soft-refresh the feed when returning to a tab idle > 10 min — swaps in
+//    fresh headlines in place (no full reload), preserving scroll and theme.
 (function () {
     var awaySince = 0
+    var main = document.getElementById('main')
     document.addEventListener('visibilitychange', function () {
         if (document.hidden) { awaySince = Date.now(); return }
-        if (awaySince && Date.now() - awaySince > 10 * 60 * 1000) location.reload()
+        if (!main || !awaySince || Date.now() - awaySince < 10 * 60 * 1000) return
+        awaySince = 0
+        fetch(location.href, { headers: { 'X-Requested-With': 'fetch' } })
+            .then(function (r) { return r.ok ? r.text() : null })
+            .then(function (html) {
+                if (!html) return
+                var fresh = new DOMParser().parseFromString(html, 'text/html').getElementById('main')
+                if (fresh) main.innerHTML = fresh.innerHTML
+            })
+            .catch(function () {})
     })
 })()
 

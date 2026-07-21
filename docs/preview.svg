@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="770" viewBox="0 0 1200 770" font-family="Arial, Helvetica, sans-serif" role="img" aria-label="InShort Top News — app preview">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5436"/><stop offset="1" stop-color="#ff8360"/>
+    </linearGradient>
+    <linearGradient id="btn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5436"/><stop offset="1" stop-color="#ff7a5c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- page -->
+  <rect width="1200" height="770" fill="#f5f2ec"/>
+
+  <!-- top bar -->
+  <rect x="0" y="0" width="1200" height="66" fill="#ffffff"/>
+  <line x1="0" y1="66" x2="1200" y2="66" stroke="#e7e1d6"/>
+  <!-- logo tile -->
+  <rect x="32" y="16" width="34" height="34" rx="10" fill="url(#tile)"/>
+  <g stroke="#fff" stroke-width="2.4" stroke-linecap="round">
+    <line x1="41" y1="27" x2="57" y2="27"/><line x1="41" y1="33" x2="57" y2="33"/><line x1="41" y1="39" x2="51" y2="39"/>
+  </g>
+  <text x="78" y="41" font-family="Georgia, serif" font-size="23" font-weight="700" fill="#17140f">InShort</text>
+  <!-- live badge -->
+  <rect x="176" y="22" width="60" height="22" rx="11" fill="#ffffff" stroke="#e7e1d6"/>
+  <circle cx="190" cy="33" r="4" fill="#22c55e"/>
+  <text x="199" y="37" font-size="12" font-weight="600" fill="#5b544a">Live</text>
+  <text x="250" y="37" font-size="12.5" fill="#5b544a">by Afran Usmani</text>
+  <!-- region select -->
+  <rect x="726" y="15" width="158" height="36" rx="18" fill="#ffffff" stroke="#e7e1d6"/>
+  <text x="744" y="38" font-size="14" fill="#17140f">🌐  Worldwide</text>
+  <path d="M862 30 l5 5 l5 -5" fill="none" stroke="#999" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- search -->
+  <rect x="894" y="15" width="212" height="36" rx="18" fill="#ffffff" stroke="#e7e1d6"/>
+  <text x="912" y="38" font-size="14" fill="#8c8378">Search news…</text>
+  <rect x="1040" y="20" width="60" height="26" rx="13" fill="url(#btn)"/>
+  <text x="1054" y="37" font-size="12.5" font-weight="600" fill="#fff">Search</text>
+  <!-- theme toggle -->
+  <circle cx="1134" cy="33" r="18" fill="#ffffff" stroke="#e7e1d6"/>
+  <path d="M1141 33 a7 7 0 1 1 -8 -7 a5.6 5.6 0 0 0 8 7 z" fill="#17140f"/>
+
+  <!-- hero -->
+  <text x="40" y="122" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#17140f">Top stories · Worldwide</text>
+  <circle cx="46" cy="150" r="4.5" fill="#22c55e"/>
+  <text x="58" y="155" font-size="14.5" fill="#5b544a">30 live headlines · updated in real time</text>
+
+  <!-- chips -->
+  <g font-size="13" font-weight="600">
+    <rect x="40" y="176" width="52" height="30" rx="15" fill="#17140f"/><text x="55" y="196" fill="#f5f2ec">All</text>
+    <rect x="100" y="176" width="72" height="30" rx="15" fill="#fff" stroke="#cfc8ba"/><text x="116" y="196" fill="#17140f">World</text>
+    <rect x="180" y="176" width="92" height="30" rx="15" fill="#fff" stroke="#cfc8ba"/><text x="196" y="196" fill="#17140f">Business</text>
+    <rect x="280" y="176" width="104" height="30" rx="15" fill="#fff" stroke="#cfc8ba"/><text x="296" y="196" fill="#17140f">Technology</text>
+    <rect x="392" y="176" width="70" height="30" rx="15" fill="#fff" stroke="#cfc8ba"/><text x="408" y="196" fill="#17140f">Sports</text>
+    <rect x="470" y="176" width="78" height="30" rx="15" fill="#fff" stroke="#cfc8ba"/><text x="486" y="196" fill="#17140f">Science</text>
+  </g>
+
+  <!-- featured -->
+  <rect x="40" y="224" width="1120" height="152" rx="16" fill="#fdf2ef" stroke="#f3cdc2"/>
+  <rect x="64" y="248" width="96" height="24" rx="12" fill="url(#btn)"/>
+  <text x="76" y="264" font-size="12" font-weight="700" fill="#fff" letter-spacing="1">★ TOP STORY</text>
+  <rect x="176" y="248" width="58" height="24" rx="12" fill="rgba(37,99,235,.12)" stroke="rgba(37,99,235,.28)"/>
+  <text x="187" y="264" font-size="11" font-weight="700" fill="#2563eb" letter-spacing="1">WORLD</text>
+  <text x="248" y="265" font-size="13" fill="#5b544a">Reuters · 7m ago</text>
+  <text x="64" y="312" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#17140f">Global leaders convene for climate summit as</text>
+  <text x="64" y="346" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#17140f">nations pledge deeper emissions cuts</text>
+
+  <!-- cards grid: 3 x 2 -->
+  <!-- row 1 -->
+  <g font-family="Arial, sans-serif">
+    <!-- card 1 -->
+    <rect x="40"  y="398" width="360" height="160" rx="16" fill="#fff" stroke="#e7e1d6"/>
+    <rect x="40"  y="398" width="4" height="160" fill="#1a7f5a"/>
+    <rect x="64"  y="420" width="76" height="22" rx="11" fill="rgba(26,127,90,.12)" stroke="rgba(26,127,90,.28)"/>
+    <text x="74"  y="435" font-size="10.5" font-weight="700" fill="#1a7f5a" letter-spacing="1">BUSINESS</text>
+    <text x="150" y="435" font-size="12" fill="#5b544a">CNBC · 22m ago</text>
+    <text x="64"  y="470" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">Markets rally as inflation cools</text>
+    <text x="64"  y="494" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">to a multi-year low</text>
+    <text x="64"  y="536" font-size="12.5" font-weight="600" fill="#b6371f">Read full story →</text>
+    <!-- card 2 -->
+    <rect x="420" y="398" width="360" height="160" rx="16" fill="#fff" stroke="#e7e1d6"/>
+    <rect x="420" y="398" width="4" height="160" fill="#1f6feb"/>
+    <rect x="444" y="420" width="92" height="22" rx="11" fill="rgba(31,111,235,.12)" stroke="rgba(31,111,235,.28)"/>
+    <text x="454" y="435" font-size="10.5" font-weight="700" fill="#1f6feb" letter-spacing="1">TECHNOLOGY</text>
+    <text x="546" y="435" font-size="12" fill="#5b544a">The Verge · 1h ago</text>
+    <text x="444" y="470" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">New chip promises big leap in</text>
+    <text x="444" y="494" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">on-device performance</text>
+    <text x="444" y="536" font-size="12.5" font-weight="600" fill="#b6371f">Read full story →</text>
+    <!-- card 3 -->
+    <rect x="800" y="398" width="360" height="160" rx="16" fill="#fff" stroke="#e7e1d6"/>
+    <rect x="800" y="398" width="4" height="160" fill="#7c3aed"/>
+    <rect x="824" y="420" width="132" height="22" rx="11" fill="rgba(124,58,237,.14)" stroke="rgba(124,58,237,.3)"/>
+    <text x="834" y="435" font-size="10.5" font-weight="700" fill="#7c3aed" letter-spacing="1">AGENTIC / GEN AI</text>
+    <text x="966" y="435" font-size="12" fill="#5b544a">3h ago</text>
+    <text x="824" y="470" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">Labs unveil agents that plan</text>
+    <text x="824" y="494" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">and act autonomously</text>
+    <text x="824" y="536" font-size="12.5" font-weight="600" fill="#b6371f">Read full story →</text>
+    <!-- row 2 -->
+    <rect x="40"  y="578" width="360" height="160" rx="16" fill="#fff" stroke="#e7e1d6"/>
+    <rect x="40"  y="578" width="4" height="160" fill="#b8860b"/>
+    <rect x="64"  y="600" width="66" height="22" rx="11" fill="rgba(184,134,11,.14)" stroke="rgba(184,134,11,.3)"/>
+    <text x="74"  y="615" font-size="10.5" font-weight="700" fill="#b8860b" letter-spacing="1">SPORTS</text>
+    <text x="140" y="615" font-size="12" fill="#5b544a">ESPN · 2h ago</text>
+    <text x="64"  y="650" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">Underdogs stun champions in</text>
+    <text x="64"  y="674" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">a last-minute thriller</text>
+    <text x="64"  y="716" font-size="12.5" font-weight="600" fill="#b6371f">Read full story →</text>
+
+    <rect x="420" y="578" width="360" height="160" rx="16" fill="#fff" stroke="#e7e1d6"/>
+    <rect x="420" y="578" width="4" height="160" fill="#d64933"/>
+    <rect x="444" y="600" width="72" height="22" rx="11" fill="rgba(214,73,51,.12)" stroke="rgba(214,73,51,.28)"/>
+    <text x="454" y="615" font-size="10.5" font-weight="700" fill="#d64933" letter-spacing="1">POLITICS</text>
+    <text x="526" y="615" font-size="12" fill="#5b544a">BBC · 4h ago</text>
+    <text x="444" y="650" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">Parliament passes landmark</text>
+    <text x="444" y="674" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">reform bill after debate</text>
+    <text x="444" y="716" font-size="12.5" font-weight="600" fill="#b6371f">Read full story →</text>
+
+    <rect x="800" y="578" width="360" height="160" rx="16" fill="#fff" stroke="#e7e1d6"/>
+    <rect x="800" y="578" width="4" height="160" fill="#0f9488"/>
+    <rect x="824" y="600" width="64" height="22" rx="11" fill="rgba(15,148,136,.12)" stroke="rgba(15,148,136,.28)"/>
+    <text x="834" y="615" font-size="10.5" font-weight="700" fill="#0f9488" letter-spacing="1">HEALTH</text>
+    <text x="898" y="615" font-size="12" fill="#5b544a">Reuters · 5h ago</text>
+    <text x="824" y="650" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">Study links daily walking to</text>
+    <text x="824" y="674" font-family="Georgia, serif" font-size="18" font-weight="600" fill="#17140f">sharply lower risk</text>
+    <text x="824" y="716" font-size="12.5" font-weight="600" fill="#b6371f">Read full story →</text>
+  </g>
+</svg>
