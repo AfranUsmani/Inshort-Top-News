@@ -12,7 +12,7 @@
                 <% if (typeof timeAgo === 'function' && article.publishedAt) { %><span class="card__time"><%= timeAgo(article.publishedAt) %></span><% } %>
             </div>
             <h2 class="card__title"><%= article.title %></h2>
-            <p class="card__summary"><%= article.summary %></p>
+            <% if (article.summary) { %><p class="card__summary"><%= article.summary %></p><% } %>
             <span class="card__more">Read full story &rarr;</span>
         </div>
     </a>

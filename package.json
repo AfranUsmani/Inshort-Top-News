@@ -1,7 +1,7 @@
 {
   "name": "news",
   "version": "1.0.0",
-  "description": "InShort Top News — Express app that renders and summarizes top headlines from NewsAPI",
+  "description": "InShort Top News — Express app serving live top headlines from Google News RSS",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -11,16 +11,22 @@
   "engines": {
     "node": ">=18"
   },
-  "keywords": ["news", "express", "ejs", "newsapi"],
+  "keywords": [
+    "news",
+    "express",
+    "ejs",
+    "google-news",
+    "rss"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "helmet": "^8.3.0",
-    "morgan": "^1.11.0"
+    "morgan": "^1.11.0",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

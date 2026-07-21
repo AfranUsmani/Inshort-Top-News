@@ -1,4 +1,4 @@
-/* InShort — AI-summarized top news. Hand-authored; no build step. */
+/* InShort — Live top headlines. Hand-authored; no build step. */
 
 :root {
     --paper: #f5f2ec;
@@ -326,7 +326,12 @@ a { color: inherit; }
     color: inherit;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-.featured--noimg { grid-template-columns: 1fr; }
+.featured--noimg {
+    grid-template-columns: 1fr;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface));
+}
+.featured--noimg .featured__body { padding: 34px 32px; gap: 14px; }
+.featured--noimg .featured__title { font-size: clamp(1.8rem, 3.4vw, 2.7rem); }
 
 .featured:hover {
     transform: translateY(-3px);
@@ -352,18 +357,19 @@ a { color: inherit; }
 .featured__media.is-broken { display: none; }
 
 .featured__flag {
-    position: absolute;
-    top: 14px;
-    left: 14px;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: .68rem;
     font-weight: 700;
     letter-spacing: .06em;
     text-transform: uppercase;
     color: #fff;
     background: linear-gradient(150deg, var(--accent), #ff7a5c);
-    padding: 5px 11px;
+    padding: 5px 12px;
     border-radius: 999px;
-    box-shadow: 0 6px 16px -6px rgba(255, 84, 54, .7);
+    box-shadow: 0 6px 16px -6px rgba(255, 84, 54, .5);
 }
 
 .featured__body {
@@ -443,11 +449,21 @@ a { color: inherit; }
 .card {
     background: var(--surface);
     border: 1px solid var(--line);
+    border-left: 3px solid color-mix(in srgb, var(--accent) 45%, var(--line));
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
+
+/* Category color accent (compensates for the image-free layout) */
+.card[data-category="Technology"] { border-left-color: #1f6feb; }
+.card[data-category="Business"]   { border-left-color: #1a7f5a; }
+.card[data-category="Sports"]     { border-left-color: #b8860b; }
+.card[data-category="Science"]    { border-left-color: #7b3ff2; }
+.card[data-category="Health"]     { border-left-color: #0f9488; }
+.card[data-category="Politics"]   { border-left-color: #d64933; }
+.card[data-category="World"]      { border-left-color: #2563eb; }
 
 .card:hover {
     transform: translateY(-4px);
