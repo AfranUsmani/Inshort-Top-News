@@ -38,28 +38,14 @@ resources with no API key, no quota, and nothing to configure**.
 
 ## 🖼️ Preview
 
+[![InShort Top News — preview](docs/preview.svg)](https://inshort-top-news.vercel.app)
+
 > **[View the live app →](https://inshort-top-news.vercel.app)**
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│ ▤ InShort ● Live  by Afran Usmani     [▾ 🌐 World][Search][🌙] │
-├──────────────────────────────────────────────────────────────┤
-│  Top stories · Worldwide                                       │
-│  ● 30 live headlines · updated in real time                    │
-│  [ All ][ Business ][ Technology ][ Sports ][ World ] …        │
-│  ┌──────────────────── ★ TOP STORY ───────────────────────┐   │
-│  │  WORLD · Reuters · 7m ago                                │   │
-│  │  Big lead headline in serif                              │   │
-│  │                                        Read full story → │   │
-│  └──────────────────────────────────────────────────────────┘ │
-│  ▎BUSINESS · CNBC     ▎TECH · The Verge   ▎SPORTS · ESPN       │
-│  ▎Headline…           ▎Headline…          ▎Headline…           │
-│  ▎· 22m ago           ▎· 1h ago           ▎· 2h ago            │
-└──────────────────────────────────────────────────────────────┘
-```
-
 *(Google News RSS provides headlines, sources, and timestamps — no thumbnails —
-so cards are clean and text-forward, color-coded by category.)*
+so cards are clean and text-forward, color-coded by category. The image above is
+a rendered preview; drop a real screenshot at `docs/preview.png` and update this
+link to swap it in.)*
 
 ## 🧱 Tech stack
 
