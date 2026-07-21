@@ -434,7 +434,7 @@ a { color: inherit; }
 .chip:active { transform: scale(.97); }
 
 .chip.is-active {
-    color: #fff;
+    color: var(--paper);
     background: var(--ink);
     border-color: var(--ink);
 }
