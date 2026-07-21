@@ -89,6 +89,22 @@ async function fetchRaw(query) {
 }
 
 // A search term takes priority; otherwise fall back to the chosen region's feed.
+// Relative time label, e.g. "just now", "23m ago", "4h ago", "2d ago", "14 Jul".
+function timeAgo(iso) {
+    if (!iso) return ''
+    const then = new Date(iso).getTime()
+    if (!then) return ''
+    const s = Math.max(0, Math.floor((Date.now() - then) / 1000))
+    if (s < 60) return 'just now'
+    const m = Math.floor(s / 60)
+    if (m < 60) return `${m}m ago`
+    const h = Math.floor(m / 60)
+    if (h < 24) return `${h}h ago`
+    const d = Math.floor(h / 24)
+    if (d < 7) return `${d}d ago`
+    return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+}
+
 async function getNews({ region, search } = {}) {
     const term = clean(search)
     const q = term || regionByCode(region).q
@@ -99,4 +115,4 @@ async function getNews({ region, search } = {}) {
         .map(normalize)
 }
 
-module.exports = { getNews, REGIONS, DEFAULT_REGION, regionByCode }
+module.exports = { getNews, REGIONS, DEFAULT_REGION, regionByCode, timeAgo }

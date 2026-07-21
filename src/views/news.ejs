@@ -7,9 +7,10 @@
     <main class="wrapper">
         <% if (articles && articles.length) { %>
             <%- include('./partials/hero.ejs') %>
+            <%- include('./partials/featured.ejs', { article: articles[0] }) %>
             <%- include('./partials/chips.ejs') %>
             <section class="news" id="news">
-                <% articles.forEach(function(article){ %>
+                <% articles.forEach(function(article, i){ if (i === 0) return; %>
                     <%- include('./partials/card.ejs', { article: article }) %>
                 <% }) %>
             </section>
