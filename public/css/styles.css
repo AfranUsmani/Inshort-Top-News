@@ -83,6 +83,18 @@ a { color: inherit; }
     letter-spacing: -.02em;
 }
 
+.brand__by {
+    font-family: var(--sans);
+    font-size: .72rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding-left: 2px;
+}
+
+@media (max-width: 680px) {
+    .brand__by { display: none; }
+}
+
 .brand__mark {
     display: grid;
     place-items: center;
