@@ -362,17 +362,20 @@ a { color: inherit; }
 .chip {
     font: inherit;
     font-size: .85rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     padding: 7px 15px;
     border-radius: 999px;
-    color: var(--ink-soft);
+    color: var(--ink);
     background: var(--surface);
-    border: 1px solid var(--line);
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, var(--line));
     transition: color .15s, background .15s, border-color .15s, transform .1s;
 }
 
-.chip:hover { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.chip:hover {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
 .chip:active { transform: scale(.97); }
 
 .chip.is-active {
