@@ -37,8 +37,10 @@ const searchUrl = (q) => `https://news.google.com/rss/search?q=${encodeURICompon
 
 // Free, deterministic category tagging from the headline text.
 const CATEGORY_RULES = [
+    ['Agentic/Generative AI', /\b(agentic|generative ai|gen ?ai|large language models?|\bllms?\b|chatgpt|gpt-?[0-9]|openai|anthropic|\bclaude\b|gemini|copilot|ai agents?|autonomous agents?|prompt engineering|midjourney|stable diffusion|\bsora\b|diffusion models?|foundation models?|hugging ?face|mistral|\bllama ?[0-9]?\b|deepseek|grok)\b/i],
+    ['AI/ML', /\b(machine learning|deep learning|neural networks?|\bml\b|artificial intelligence|\bai\b|computer vision|\bnlp\b|ai models?|ai chips?|reinforcement learning)\b/i],
     ['Business', /\b(market|stocks?|economy|econom|trade|business|rupee|dollar|sensex|nifty|gdp|inflation|ipo|invest|funding|bank|revenue|profit|earnings|tariff)\b/i],
-    ['Technology', /\b(tech|technolog|\bai\b|software|app|google|apple|microsoft|smartphone|gadget|chip|semiconductor|internet|cyber|crypto|bitcoin|startup)\b/i],
+    ['Technology', /\b(tech|technolog|software|app|google|apple|microsoft|smartphone|gadget|chip|semiconductor|internet|cyber|crypto|bitcoin|startup)\b/i],
     ['Sports', /\b(cricket|football|soccer|match|tournament|olympic|\bipl\b|world cup|bcci|fifa|nba|tennis|hockey|innings|wicket|goal)\b/i],
     ['Entertainment', /\b(movie|film|bollywood|hollywood|actor|actress|music|album|box office|celebrity|trailer|netflix|\bott\b)\b/i],
     ['Science', /\b(science|space|isro|nasa|research|scientist|climate|physics|astronom|rocket|satellite)\b/i],
