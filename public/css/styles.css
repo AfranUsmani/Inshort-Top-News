@@ -96,15 +96,37 @@ a { color: inherit; }
 }
 
 .brand__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-family: var(--sans);
     font-size: .68rem;
     font-weight: 600;
     letter-spacing: .02em;
-    padding: 3px 8px;
+    padding: 3px 9px;
     border-radius: 999px;
-    color: var(--accent-ink);
-    background: color-mix(in srgb, var(--accent) 16%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+.dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, .18);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(34, 197, 94, .18); }
+    50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, .06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dot { animation: none; }
 }
 
 .search {
@@ -159,53 +181,27 @@ a { color: inherit; }
     padding: 28px 20px 64px;
 }
 
-.results-label {
-    margin: 4px 2px 18px;
-    color: var(--ink-soft);
-    font-size: .98rem;
-}
-.results-label strong { color: var(--ink); }
-
-/* ---------- AI briefing ---------- */
-.briefing {
-    position: relative;
-    border-radius: var(--radius);
-    padding: 22px 24px;
-    margin-bottom: 26px;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface));
-    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
-    box-shadow: var(--shadow);
-    overflow: hidden;
+/* ---------- Hero ---------- */
+.hero {
+    margin: 4px 0 22px;
 }
 
-.briefing::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 4px;
-    background: linear-gradient(var(--accent), #ff9a80);
-}
-
-.briefing__label {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: .74rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--accent-ink);
-    margin-bottom: 8px;
-}
-
-.spark { filter: saturate(1.4); }
-
-.briefing__text {
-    margin: 0;
+.hero__title {
+    margin: 0 0 6px;
     font-family: var(--serif);
-    font-size: 1.32rem;
-    line-height: 1.4;
-    letter-spacing: -.01em;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -.025em;
+}
+
+.hero__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: .9rem;
 }
 
 /* ---------- Category chips ---------- */

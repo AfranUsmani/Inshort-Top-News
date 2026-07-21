@@ -1,21 +1,26 @@
 {
   "name": "news",
   "version": "1.0.0",
-  "description": "InShort Top News — Express app that renders top headlines from NewsAPI",
+  "description": "InShort Top News — Express app that renders and summarizes top headlines from NewsAPI",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["news", "express", "ejs", "newsapi"],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.112.3",
     "axios": "^1.7.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "helmet": "^8.3.0",
+    "morgan": "^1.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

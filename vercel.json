@@ -1,8 +1,7 @@
 {
   "functions": {
     "api/index.js": {
-      "includeFiles": "src/views/**",
-      "maxDuration": 30
+      "includeFiles": "src/views/**"
     }
   },
   "rewrites": [

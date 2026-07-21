@@ -6,12 +6,7 @@
 
     <main class="wrapper">
         <% if (articles && articles.length) { %>
-            <% if (typeof query !== 'undefined' && query) { %>
-                <p class="results-label">Showing results for <strong><%= query %></strong></p>
-            <% } %>
-            <% if (typeof briefing !== 'undefined' && briefing) { %>
-                <%- include('./partials/briefing.ejs') %>
-            <% } %>
+            <%- include('./partials/hero.ejs') %>
             <%- include('./partials/chips.ejs') %>
             <section class="news" id="news">
                 <% articles.forEach(function(article){ %>

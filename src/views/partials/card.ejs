@@ -2,8 +2,7 @@
     <a class="card__link" href="<%= article.url %>" target="_blank" rel="noopener noreferrer">
         <% if (article.urlToImage) { %>
         <div class="card__media">
-            <img src="<%= article.urlToImage %>" alt="" loading="lazy"
-                 onerror="this.closest('.card__media').classList.add('is-broken')">
+            <img src="<%= article.urlToImage %>" alt="" loading="lazy">
         </div>
         <% } %>
         <div class="card__body">
@@ -12,8 +11,8 @@
                 <% if (article.source && article.source.name) { %><span class="card__source"><%= article.source.name %></span><% } %>
             </div>
             <h2 class="card__title"><%= article.title %></h2>
-            <p class="card__summary"><%= article.aiSummary %></p>
-            <span class="card__more">Read full story →</span>
+            <p class="card__summary"><%= article.summary %></p>
+            <span class="card__more">Read full story &rarr;</span>
         </div>
     </a>
 </article>

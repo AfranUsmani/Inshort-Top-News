@@ -1,49 +1,30 @@
 const express = require('express')
 const newsRouter = express.Router()
-const axios = require('axios')
 require('dotenv').config()
 
-const { enhance } = require('../services/ai')
+const { getNews } = require('../services/news')
 
-const apiKey = process.env.API_KEY
-const HTTP = { timeout: 6000 }
-
-// Latest India news (NewsAPI's top-headlines?country=in currently returns
-// no sources, so use the /everything endpoint sorted by most recent)
-newsRouter.get('', async (req, res) => {
-    try {
-        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=india&language=en&sortBy=publishedAt&apiKey=${apiKey}`, HTTP)
-        const { items, briefing, aiEnabled } = await enhance(newsAPI.data.articles)
-        res.render('news', { articles: items, briefing, aiEnabled, query: null })
-    } catch (err) {
-        logError(err)
-        res.render('news', { articles: [], briefing: null, aiEnabled: false, query: null })
-    }
-})
+// Homepage: latest India news
+newsRouter.get('', (req, res) => render(res, null))
 
 // Keyword search
-newsRouter.post('', async (req, res) => {
-    const search = req.body.search
+newsRouter.post('', (req, res) => render(res, req.body.search))
+
+async function render(res, rawQuery) {
+    const query = rawQuery ? String(rawQuery).trim() : null
     try {
-        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&language=en&sortBy=publishedAt&apiKey=${apiKey}`, HTTP)
-        const { items, briefing, aiEnabled } = await enhance(newsAPI.data.articles)
-        res.render('news', { articles: items, briefing, aiEnabled, query: search })
+        const articles = await getNews(query)
+        res.render('news', { articles, query })
     } catch (err) {
         logError(err)
-        res.render('news', { articles: [], briefing: null, aiEnabled: false, query: search })
+        res.render('news', { articles: [], query })
     }
-})
+}
 
 function logError(err) {
-    if (err.response) {
-        console.log(err.response.data)
-        console.log(err.response.status)
-        console.log(err.response.headers)
-    } else if (err.request) {
-        console.log(err.request)
-    } else {
-        console.error('Error', err.message)
-    }
+    if (err.response) console.log('NewsAPI error', err.response.status, err.response.data)
+    else if (err.request) console.log('NewsAPI: no response received')
+    else console.error('Error', err.message)
 }
 
 module.exports = newsRouter

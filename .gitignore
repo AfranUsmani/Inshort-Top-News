@@ -1,2 +1,23 @@
-.env
+# dependencies
 node_modules/
+
+# env & secrets
+.env
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# platform / editor
+.vercel
+.DS_Store
+.idea/
+.vscode/
+
+# build / coverage
+dist/
+coverage/

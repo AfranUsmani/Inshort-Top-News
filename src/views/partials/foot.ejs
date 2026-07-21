@@ -1,10 +1,8 @@
 <footer class="footer">
     <p class="footer__text">
-        <% if (typeof aiEnabled !== 'undefined' && aiEnabled) { %>
-            In-shorts summarized by <strong>Claude AI</strong> &middot; News via NewsAPI
-        <% } else { %>
-            News via NewsAPI &middot; <span class="footer__muted">set <code>ANTHROPIC_API_KEY</code> to switch on AI summaries</span>
-        <% } %>
+        News via <a href="https://newsapi.org" target="_blank" rel="noopener">NewsAPI</a>
+        &middot; built with Express
+        &middot; <a href="https://github.com/AfranUsmani/Inshort-Top-News" target="_blank" rel="noopener">source</a>
     </p>
 </footer>
 <script src="/js/app.js" defer></script>
