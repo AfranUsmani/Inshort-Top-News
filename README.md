@@ -4,11 +4,12 @@
 
 **Live top headlines from around the world — fast, free, and zero-config.**
 
+[![CI](https://github.com/AfranUsmani/Inshort-Top-News/actions/workflows/ci.yml/badge.svg)](https://github.com/AfranUsmani/Inshort-Top-News/actions/workflows/ci.yml)
 [![Live](https://img.shields.io/badge/live-inshort--top--news.vercel.app-ff5436)](https://inshort-top-news.vercel.app)
-[![Node](https://img.shields.io/badge/node-%3E%3D18-3c873a)](https://nodejs.org)
+[![Node](https://img.shields.io/badge/node-22.x-3c873a)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/express-4-000000)](https://expressjs.com)
 [![Deploy](https://img.shields.io/badge/deploy-vercel-000000)](https://vercel.com/new/clone?repository-url=https://github.com/AfranUsmani/Inshort-Top-News)
-[![License](https://img.shields.io/badge/license-ISC-blue)](#license)
+[![License](https://img.shields.io/badge/license-ISC-blue)](./LICENSE)
 
 [**Live demo →**](https://inshort-top-news.vercel.app)
 
@@ -32,6 +33,8 @@ resources with no API key, no quota, and nothing to configure**.
   and defaults to your system preference.
 - 🛡️ **Production-grade** — response caching, security headers (Helmet), request
   logging, `/healthz` check, graceful fallbacks, and a styled 404 page.
+- ✅ **Tested & CI** — unit tests on Node's built-in runner (zero deps), run by
+  GitHub Actions on every push and pull request; Dependabot keeps deps current.
 
 ## 🖼️ Preview
 
@@ -95,6 +98,17 @@ npm run dev            # http://localhost:5000 — no API key needed
 | `GET`  | `/?q=bitcoin` | Keyword search (takes priority over region)   |
 | `GET`  | `/healthz`    | Health check → `{ "status": "ok" }`          |
 
+## 🧪 Testing
+
+Unit tests run on Node's built-in test runner — **no dependencies**:
+
+```bash
+npm test
+```
+
+They cover the pure logic (headline/source splitting, category tagging, relative
+timestamps, region lookup). **CI** runs them on every push and pull request.
+
 ## 📁 Project structure
 
 ```
@@ -110,6 +124,7 @@ public/
   js/theme.js          sets theme before paint (flash-free)
   js/app.js            chip filter, region switch, theme toggle
   favicon.svg          logo mark
+test/                  node:test unit tests
 ```
 
 ## ☁️ Deploy
@@ -130,9 +145,14 @@ Any Node host works too — just run `npm start` (the `Procfile` uses `node app.
   the UI is intentionally text-forward. To add thumbnails + summaries you'd swap in a
   keyed API (e.g. GNews / NewsData.io free tiers) — at the cost of per-request limits.
 
+## 🤝 Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md). In short:
+branch from `master`, run `npm test`, and open a PR (the template + CI will guide you).
+
 ## 📄 License
 
-ISC.
+[ISC](./LICENSE) © Afran Usmani
 
 <div align="center">
 
