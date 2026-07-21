@@ -6,9 +6,9 @@
 %>
 <% if (cats.length) { %>
 <nav class="chips" aria-label="Filter by category">
-    <button class="chip is-active" data-cat="all">All</button>
+    <button type="button" class="chip is-active" data-cat="all" aria-pressed="true">All</button>
     <% cats.forEach(function (c) { %>
-        <button class="chip" data-cat="<%= c %>"><%= c %></button>
+        <button type="button" class="chip" data-cat="<%= c %>" aria-pressed="false"><%= c %></button>
     <% }) %>
 </nav>
 <% } %>

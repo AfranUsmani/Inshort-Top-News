@@ -1,7 +1,20 @@
+<% var _error = (typeof error !== 'undefined' && error); %>
 <div class="empty">
-    <div class="empty__emoji" aria-hidden="true">📰</div>
+    <div class="empty__emoji" aria-hidden="true"><%= _error ? '⚠️' : '📰' %></div>
     <h2 class="empty__title">
-        <% if (typeof query !== 'undefined' && query) { %>No results for "<%= query %>"<% } else { %>No stories right now<% } %>
+        <% if (_error) { %>
+            Couldn&rsquo;t load headlines
+        <% } else if (typeof query !== 'undefined' && query) { %>
+            No results for &ldquo;<%= query %>&rdquo;
+        <% } else { %>
+            No stories right now
+        <% } %>
     </h2>
-    <p class="empty__text">Try a different search, or head back to <a href="/">top news</a>.</p>
+    <p class="empty__text">
+        <% if (_error) { %>
+            The news feed didn&rsquo;t respond. <a href="/">Try again</a>.
+        <% } else { %>
+            Try a different search, or head back to <a href="/">top news</a>.
+        <% } %>
+    </p>
 </div>

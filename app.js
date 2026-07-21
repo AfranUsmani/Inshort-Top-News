@@ -43,7 +43,7 @@ app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'ejs')
 
 // Parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true, limit: '16kb' }))
 
 // Health check for uptime monitoring
 app.get('/healthz', (req, res) => res.json({ status: 'ok', uptime: process.uptime() }))
