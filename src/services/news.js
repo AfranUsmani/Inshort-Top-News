@@ -115,4 +115,4 @@ function timeAgo(iso) {
     return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
 }
 
-module.exports = { getNews, REGIONS, DEFAULT_REGION, regionByCode, timeAgo }
+module.exports = { getNews, REGIONS, DEFAULT_REGION, regionByCode, timeAgo, categorize, splitTitle }
