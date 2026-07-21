@@ -1,6 +1,10 @@
 <section class="hero">
     <h1 class="hero__title">
-        <% if (typeof query !== 'undefined' && query) { %>Results for &ldquo;<%= query %>&rdquo;<% } else { %>Top stories in India<% } %>
+        <% if (typeof query !== 'undefined' && query) { %>
+            Results for &ldquo;<%= query %>&rdquo;
+        <% } else { %>
+            Top stories &middot; <%= (typeof activeRegionLabel !== 'undefined' && activeRegionLabel) ? activeRegionLabel : 'Worldwide' %>
+        <% } %>
     </h1>
     <p class="hero__meta">
         <span class="dot" aria-hidden="true"></span>

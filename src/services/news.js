@@ -10,6 +10,27 @@ const SUMMARY_WORDS = 42
 
 const cache = new Map()
 
+// Regions the reader can browse. `q` is the NewsAPI /everything query
+// (top-headlines?country= returns no sources for several countries, so we
+// query by name — validated to return full result sets).
+const REGIONS = [
+    { code: 'world', label: 'Worldwide', flag: '🌐', q: 'world' },
+    { code: 'in', label: 'India', flag: '🇮🇳', q: 'India' },
+    { code: 'us', label: 'United States', flag: '🇺🇸', q: 'United States' },
+    { code: 'gb', label: 'United Kingdom', flag: '🇬🇧', q: 'United Kingdom' },
+    { code: 'ca', label: 'Canada', flag: '🇨🇦', q: 'Canada' },
+    { code: 'au', label: 'Australia', flag: '🇦🇺', q: 'Australia' },
+    { code: 'ae', label: 'UAE', flag: '🇦🇪', q: 'United Arab Emirates' },
+    { code: 'sg', label: 'Singapore', flag: '🇸🇬', q: 'Singapore' },
+    { code: 'de', label: 'Germany', flag: '🇩🇪', q: 'Germany' },
+    { code: 'fr', label: 'France', flag: '🇫🇷', q: 'France' },
+    { code: 'jp', label: 'Japan', flag: '🇯🇵', q: 'Japan' },
+    { code: 'cn', label: 'China', flag: '🇨🇳', q: 'China' },
+]
+const DEFAULT_REGION = 'world'
+
+const regionByCode = (code) => REGIONS.find((r) => r.code === code) || REGIONS.find((r) => r.code === DEFAULT_REGION)
+
 // Lightweight, free, deterministic category tagging (no external service).
 const CATEGORY_RULES = [
     ['Business', /\b(market|stocks?|economy|econom|trade|business|rupee|sensex|nifty|gdp|inflation|ipo|invest|funding|bank|revenue|profit|earnings|tariff)\b/i],
@@ -67,9 +88,10 @@ async function fetchRaw(query) {
     return articles
 }
 
-// query null/empty -> homepage (latest India news).
-async function getNews(query) {
-    const q = clean(query) || 'India'
+// A search term takes priority; otherwise fall back to the chosen region's feed.
+async function getNews({ region, search } = {}) {
+    const term = clean(search)
+    const q = term || regionByCode(region).q
     const raw = await fetchRaw(q)
     return raw
         .filter((a) => a && a.url && a.title && a.title !== '[Removed]')
@@ -77,4 +99,4 @@ async function getNews(query) {
         .map(normalize)
 }
 
-module.exports = { getNews }
+module.exports = { getNews, REGIONS, DEFAULT_REGION, regionByCode }

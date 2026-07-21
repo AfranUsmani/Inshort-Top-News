@@ -22,7 +22,9 @@ resources, no paid services, and no keys beyond a free NewsAPI one**.
 
 ## ✨ Features
 
-- 📰 **Latest India news** on the homepage, plus keyword **search**.
+- 🌍 **Global** — browse top stories worldwide or by country (India, US, UK,
+  Canada, Australia, UAE, Singapore, Germany, France, Japan, China), plus
+  keyword **search**.
 - ✂️ **Auto-summarized cards** — each story trimmed to a crisp snippet (local, free).
 - 🏷️ **Category chips** — instant client-side filtering (Business, Tech, Sports, …).
 - 🌗 **Responsive + dark-mode** editorial UI, no front-end framework.
@@ -83,11 +85,12 @@ Get a free key at **[newsapi.org/register](https://newsapi.org/register)**.
 
 ## 🗺️ Routes
 
-| Method | Path        | Description                              |
-| ------ | ----------- | ---------------------------------------- |
-| `GET`  | `/`         | Latest India top news                    |
-| `POST` | `/`         | Keyword search (`search` form field)     |
-| `GET`  | `/healthz`  | Health check → `{ "status": "ok" }`      |
+| Method | Path            | Description                                  |
+| ------ | --------------- | -------------------------------------------- |
+| `GET`  | `/`             | Top stories for the default region (world)   |
+| `GET`  | `/?region=us`   | A specific country's feed                     |
+| `GET`  | `/?q=bitcoin`   | Keyword search (takes priority over region)   |
+| `GET`  | `/healthz`      | Health check → `{ "status": "ok" }`          |
 
 ## 📁 Project structure
 

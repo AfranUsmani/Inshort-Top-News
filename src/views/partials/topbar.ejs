@@ -1,3 +1,8 @@
+<%
+    var _regions = (typeof regions !== 'undefined' && regions) ? regions : [];
+    var _active = (typeof activeRegion !== 'undefined' && activeRegion) ? activeRegion : '';
+    var _q = (typeof query !== 'undefined' && query) ? query : '';
+%>
 <header class="topbar">
     <div class="topbar__inner">
         <a href="/" class="brand" aria-label="InShort home">
@@ -5,9 +10,18 @@
             <span class="brand__name">InShort</span>
             <span class="brand__badge"><span class="dot" aria-hidden="true"></span> Live</span>
         </a>
-        <form class="search" action="/" method="POST" role="search">
-            <input class="search__input" type="text" name="search" placeholder="Search world news…" aria-label="Search news" required>
-            <button class="search__btn" type="submit">Search</button>
+        <form class="toolbar" method="GET" action="/" role="search">
+            <% if (_regions.length) { %>
+            <select name="region" id="region-select" class="region__select" aria-label="Choose region">
+                <% _regions.forEach(function(r){ %>
+                    <option value="<%= r.code %>" <%= _active === r.code ? 'selected' : '' %>><%= r.flag %> <%= r.label %></option>
+                <% }) %>
+            </select>
+            <% } %>
+            <div class="search">
+                <input class="search__input" type="text" name="q" placeholder="Search news…" aria-label="Search news" value="<%= _q %>">
+                <button class="search__btn" type="submit">Search</button>
+            </div>
         </form>
     </div>
 </header>

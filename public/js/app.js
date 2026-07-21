@@ -10,7 +10,17 @@ document.querySelectorAll('.card__media img').forEach(function (img) {
     if (img.complete && img.naturalWidth === 0) hideBroken(img)
 })
 
-// 2. Category chip filtering.
+// 2. Region dropdown: load that country's feed immediately on change.
+var region = document.getElementById('region-select')
+if (region) {
+    region.addEventListener('change', function () {
+        var q = document.querySelector('.search__input')
+        if (q) q.value = '' // browsing a region clears any prior search term
+        if (region.form) region.form.submit()
+    })
+}
+
+// 3. Category chip filtering.
 document.addEventListener('click', function (e) {
     var chip = e.target.closest('.chip')
     if (!chip) return

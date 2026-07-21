@@ -2,24 +2,37 @@ const express = require('express')
 const newsRouter = express.Router()
 require('dotenv').config()
 
-const { getNews } = require('../services/news')
+const { getNews, REGIONS, DEFAULT_REGION, regionByCode } = require('../services/news')
 
-// Homepage: latest India news
-newsRouter.get('', (req, res) => render(res, null))
+// Homepage + region browse + search — all via GET so URLs are shareable.
+// /            -> default region
+// /?region=us  -> that country's feed
+// /?q=bitcoin  -> keyword search (takes priority over region)
+newsRouter.get('', async (req, res) => {
+    const search = req.query.q ? String(req.query.q).trim() : ''
+    const region = regionByCode(req.query.region ? String(req.query.region) : DEFAULT_REGION)
 
-// Keyword search
-newsRouter.post('', (req, res) => render(res, req.body.search))
+    const locals = {
+        query: search || null,
+        regions: REGIONS,
+        activeRegion: region.code,
+        activeRegionLabel: region.label,
+    }
 
-async function render(res, rawQuery) {
-    const query = rawQuery ? String(rawQuery).trim() : null
     try {
-        const articles = await getNews(query)
-        res.render('news', { articles, query })
+        const articles = await getNews({ region: region.code, search })
+        res.render('news', { ...locals, articles })
     } catch (err) {
         logError(err)
-        res.render('news', { articles: [], query })
+        res.render('news', { ...locals, articles: [] })
     }
-}
+})
+
+// Backward-compat: old POST search form -> redirect to the GET URL.
+newsRouter.post('', (req, res) => {
+    const q = req.body.search ? String(req.body.search).trim() : ''
+    res.redirect(q ? `/?q=${encodeURIComponent(q)}` : '/')
+})
 
 function logError(err) {
     if (err.response) console.log('NewsAPI error', err.response.status, err.response.data)
