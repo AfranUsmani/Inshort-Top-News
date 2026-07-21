@@ -36,9 +36,7 @@ newsRouter.post('', (req, res) => {
 })
 
 function logError(err) {
-    if (err.response) console.log('NewsAPI error', err.response.status, err.response.data)
-    else if (err.request) console.log('NewsAPI: no response received')
-    else console.error('Error', err.message)
+    console.error('News feed error:', err.message)
 }
 
 module.exports = newsRouter

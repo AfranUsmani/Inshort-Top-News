@@ -2,12 +2,12 @@
 
 # 📰 InShort Top News
 
-**Top headlines, summarized into crisp cards — fast, free, and production-ready.**
+**Live top headlines from around the world — fast, free, and zero-config.**
 
 [![Live](https://img.shields.io/badge/live-inshort--top--news.vercel.app-ff5436)](https://inshort-top-news.vercel.app)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-3c873a)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/express-4-000000)](https://expressjs.com)
-[![Deploy](https://img.shields.io/badge/deploy-vercel-000000)](https://vercel.com/new/clone?repository-url=https://github.com/AfranUsmani/Inshort-Top-News&env=API_KEY)
+[![Deploy](https://img.shields.io/badge/deploy-vercel-000000)](https://vercel.com/new/clone?repository-url=https://github.com/AfranUsmani/Inshort-Top-News)
 [![License](https://img.shields.io/badge/license-ISC-blue)](#license)
 
 [**Live demo →**](https://inshort-top-news.vercel.app)
@@ -16,26 +16,22 @@
 
 ---
 
-InShort Top News fetches top headlines from [NewsAPI](https://newsapi.org), condenses
-each story into a short "in-short" card, tags it by category, and lets you browse the
-world's news — all on **free resources, no paid services, and no keys beyond a free
-NewsAPI one**.
+InShort Top News pulls **real-time headlines from Google News RSS**, tags each by
+category, and lets you browse the world's news by country or search — all on **free
+resources with no API key, no quota, and nothing to configure**.
 
 ## ✨ Features
 
-- 🌍 **Global** — browse top stories worldwide or by country (India, US, UK, Canada,
-  Australia, UAE, Singapore, Germany, France, Japan, China), plus keyword **search**.
-- ⭐ **Featured lead story** — the top headline rendered as a large hero card.
-- ✂️ **Auto-summarized cards** — each story trimmed to a crisp snippet (local, free),
-  with a relative **timestamp** (`just now`, `3h ago`, `2d ago`).
-- 🏷️ **Category chips** — instant client-side filtering (Business, Tech, Sports, …).
+- ⚡ **Live** — real-time headlines via Google News RSS (no 24h delay, no key, no quota).
+- 🌍 **Global** — browse worldwide or by country (India, US, UK, Canada, Australia,
+  UAE, Singapore, Germany, France, Japan, China), plus keyword **search**.
+- ⭐ **Featured lead story** — the top headline rendered as a bold hero card.
+- 🕒 **Freshness timestamps** — every card shows `just now` / `12m ago` / `3h ago`.
+- 🏷️ **Category chips** — instant client-side filtering, with color-coded cards.
 - 🌗 **Light / dark theme** — one-tap toggle that's flash-free, remembers your choice,
   and defaults to your system preference.
-- ✨ **Polished UI** — editorial type, responsive grid, staggered entrance animations,
-  no front-end framework.
-- 🛡️ **Production-grade** — response caching (protects the free NewsAPI quota),
-  security headers (Helmet), request logging, `/healthz` check, graceful fallbacks,
-  and a styled 404 page.
+- 🛡️ **Production-grade** — response caching, security headers (Helmet), request
+  logging, `/healthz` check, graceful fallbacks, and a styled 404 page.
 
 ## 🖼️ Preview
 
@@ -46,27 +42,26 @@ NewsAPI one**.
 │ ▤ InShort ● Live  by Afran Usmani     [▾ 🌐 World][Search][🌙] │
 ├──────────────────────────────────────────────────────────────┤
 │  Top stories · Worldwide                                       │
-│  ● 100 stories · auto-summarized · updated live                │
-│  [ All ][ Business ][ Technology ][ Sports ][ Science ] …      │
-│  ┌──────────────── Featured / Top story ───────────────────┐  │
-│  │  [        large image        ]   BUSINESS · 2h ago       │  │
-│  │  Big lead headline in serif                              │  │
-│  │  concise summary…                    Read full story →   │  │
+│  ● 30 live headlines · updated in real time                    │
+│  [ All ][ Business ][ Technology ][ Sports ][ World ] …        │
+│  ┌──────────────────── ★ TOP STORY ───────────────────────┐   │
+│  │  WORLD · Reuters · 7m ago                                │   │
+│  │  Big lead headline in serif                              │   │
+│  │                                        Read full story → │   │
 │  └──────────────────────────────────────────────────────────┘ │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐                      │
-│  │ [image]  │  │ [image]  │  │ [image]  │                      │
-│  │ SPORTS   │  │ SCIENCE  │  │ WORLD    │                      │
-│  │ Headline │  │ Headline │  │ Headline │                      │
-│  │ summary  │  │ summary  │  │ summary  │                      │
-│  │ · 3h ago │  │ · 5h ago │  │ · 1d ago │                      │
-│  └──────────┘  └──────────┘  └──────────┘                      │
+│  ▎BUSINESS · CNBC     ▎TECH · The Verge   ▎SPORTS · ESPN       │
+│  ▎Headline…           ▎Headline…          ▎Headline…           │
+│  ▎· 22m ago           ▎· 1h ago           ▎· 2h ago            │
 └──────────────────────────────────────────────────────────────┘
 ```
 
+*(Google News RSS provides headlines, sources, and timestamps — no thumbnails —
+so cards are clean and text-forward, color-coded by category.)*
+
 ## 🧱 Tech stack
 
-**Node.js · Express · EJS · axios · Helmet · morgan.**
-Zero front-end framework — hand-authored CSS + a little vanilla JS.
+**Node.js · Express · EJS · rss-parser · Helmet · morgan.**
+No front-end framework — hand-authored CSS + vanilla JS.
 Deploys to Vercel (serverless) or any Node host — a `Procfile` is included.
 
 ## 🚀 Quick start
@@ -75,12 +70,8 @@ Deploys to Vercel (serverless) or any Node host — a `Procfile` is included.
 git clone https://github.com/AfranUsmani/Inshort-Top-News.git
 cd Inshort-Top-News
 npm install
-
-cp .env.sample .env          # then add your free NewsAPI key
-npm run dev                  # http://localhost:5000
+npm run dev            # http://localhost:5000 — no API key needed
 ```
-
-Get a free key at **[newsapi.org/register](https://newsapi.org/register)**.
 
 | Script        | Does                                 |
 | ------------- | ------------------------------------ |
@@ -89,17 +80,18 @@ Get a free key at **[newsapi.org/register](https://newsapi.org/register)**.
 
 ## 🔐 Environment variables
 
-| Variable  | Required | Description                                    |
-| --------- | -------- | ---------------------------------------------- |
-| `API_KEY` | ✅       | NewsAPI key — free at newsapi.org/register      |
-| `PORT`    | —        | Local port (default `5000`)                     |
+**None required.** The app runs with zero configuration.
+
+| Variable | Required | Description                     |
+| -------- | -------- | ------------------------------- |
+| `PORT`   | —        | Local port (default `5000`)     |
 
 ## 🗺️ Routes
 
 | Method | Path          | Description                                  |
 | ------ | ------------- | -------------------------------------------- |
-| `GET`  | `/`           | Top stories for the default region (world)   |
-| `GET`  | `/?region=us` | A specific country's feed                     |
+| `GET`  | `/`           | Live top headlines for the default region     |
+| `GET`  | `/?region=us` | A specific country's live feed                |
 | `GET`  | `/?q=bitcoin` | Keyword search (takes priority over region)   |
 | `GET`  | `/healthz`    | Health check → `{ "status": "ok" }`          |
 
@@ -110,36 +102,33 @@ app.js                 Express app: security, logging, static, routes, 404
 api/index.js           Vercel serverless entry (re-exports the app)
 src/
   routes/news.js       GET / — region browse + search (shareable URLs)
-  services/news.js     fetch + cache + summarize + categorize + timeAgo
+  services/news.js     Google News RSS: fetch + cache + categorize + timeAgo
   views/               EJS page templates
     partials/          topbar, hero, featured, card, chips, empty, foot
 public/
   css/styles.css       hand-authored theme (light + dark)
   js/theme.js          sets theme before paint (flash-free)
-  js/app.js            chip filter, region switch, theme toggle, image fallback
+  js/app.js            chip filter, region switch, theme toggle
   favicon.svg          logo mark
 ```
 
 ## ☁️ Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/AfranUsmani/Inshort-Top-News&env=API_KEY)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/AfranUsmani/Inshort-Top-News)
 
 1. Click **Deploy** (or import the repo at [vercel.com](https://vercel.com), free Hobby tier).
-2. Add the `API_KEY` environment variable.
-3. Ship it. `vercel.json` routes all traffic to the Express app and bundles the
-   views; every push to `master` auto-redeploys.
+2. That's it — no environment variables to set. `vercel.json` routes all traffic to
+   the Express app and bundles the views; every push to `master` auto-redeploys.
 
-Any Node host works too — set `API_KEY` and run `npm start` (the `Procfile` uses
-`node app.js`).
+Any Node host works too — just run `npm start` (the `Procfile` uses `node app.js`).
 
 ## 📌 Notes
 
-- NewsAPI's free "Developer" plan is dev-oriented and capped at ~100 requests/day.
-  The built-in **10-minute response cache** keeps usage well under that. For heavy
-  production traffic, upgrade the NewsAPI plan or switch the source to RSS feeds
-  (free, unlimited, no key).
-- `top-headlines?country=in` returns no sources on NewsAPI, so feeds use the
-  `/everything` endpoint (by region name / search term) sorted by most recent.
+- Headlines come from **Google News RSS** (`news.google.com/rss`) — public, real-time,
+  no key, no quota. Article links open the original publisher.
+- RSS provides headlines/sources/timestamps but **no images or article summaries**, so
+  the UI is intentionally text-forward. To add thumbnails + summaries you'd swap in a
+  keyed API (e.g. GNews / NewsData.io free tiers) — at the cost of per-request limits.
 
 ## 📄 License
 
