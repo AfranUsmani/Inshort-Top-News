@@ -5,7 +5,7 @@ const axios = require('axios')
 const ENDPOINT = 'https://newsapi.org/v2/everything'
 const HTTP_TIMEOUT = 6000
 const CACHE_TTL_MS = 10 * 60 * 1000
-const MAX_ARTICLES = 60
+const MAX_ARTICLES = 100 // NewsAPI free tier caps a query at 100 results
 const SUMMARY_WORDS = 42
 
 const cache = new Map()
