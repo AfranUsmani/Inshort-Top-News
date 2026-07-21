@@ -83,16 +83,29 @@ a { color: inherit; }
     letter-spacing: -.02em;
 }
 
+.topbar__brandwrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .brand__by {
     font-family: var(--sans);
     font-size: .72rem;
     font-weight: 500;
     color: var(--ink-soft);
-    padding-left: 2px;
+    text-decoration: none;
+    transition: color .15s;
 }
+.brand__by:hover { color: var(--accent-ink); text-decoration: underline; }
 
 @media (max-width: 680px) {
     .brand__by { display: none; }
+}
+
+.brand__emoji {
+    font-size: 1.2rem;
+    line-height: 1;
 }
 
 .brand__mark {
@@ -546,6 +559,6 @@ a { color: inherit; }
 
 @media (max-width: 560px) {
     .brand__name { display: none; }
+    .brand__emoji { display: none; }
     .search__input { width: 42vw; }
-    .briefing__text { font-size: 1.15rem; }
 }
