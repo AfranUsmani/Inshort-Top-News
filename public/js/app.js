@@ -44,3 +44,32 @@ document.addEventListener('click', function (e) {
         card.style.display = show ? '' : 'none'
     })
 })
+
+// 5. Refresh the live feed when returning to a tab that's been idle > 10 min.
+(function () {
+    var awaySince = 0
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { awaySince = Date.now(); return }
+        if (awaySince && Date.now() - awaySince > 10 * 60 * 1000) location.reload()
+    })
+})()
+
+// 6. Press "/" to focus the search box.
+document.addEventListener('keydown', function (e) {
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return
+    var el = document.activeElement
+    if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return
+    var input = document.querySelector('.search__input')
+    if (input) { e.preventDefault(); input.focus() }
+})
+
+// 7. Back-to-top button.
+var toTop = document.getElementById('to-top')
+if (toTop) {
+    window.addEventListener('scroll', function () {
+        toTop.classList.toggle('is-visible', window.scrollY > 600)
+    }, { passive: true })
+    toTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+}

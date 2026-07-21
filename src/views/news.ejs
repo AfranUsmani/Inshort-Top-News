@@ -2,9 +2,10 @@
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 <body>
+    <a class="skip-link" href="#main">Skip to headlines</a>
     <%- include('./partials/topbar.ejs') %>
 
-    <main class="wrapper">
+    <main class="wrapper" id="main">
         <% if (articles && articles.length) { %>
             <%- include('./partials/hero.ejs') %>
             <%- include('./partials/featured.ejs', { article: articles[0] }) %>
@@ -18,6 +19,12 @@
             <%- include('./partials/empty.ejs') %>
         <% } %>
     </main>
+
+    <button id="to-top" class="to-top" aria-label="Back to top" title="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
 
     <%- include('./partials/foot.ejs') %>
 </body>
