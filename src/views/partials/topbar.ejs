@@ -14,18 +14,29 @@
             </a>
             <a class="brand__by" href="https://www.linkedin.com/in/afranusmani" target="_blank" rel="noopener noreferrer">by Afran Usmani</a>
         </div>
-        <form class="toolbar" method="GET" action="/" role="search">
-            <% if (_regions.length) { %>
-            <select name="region" id="region-select" class="region__select" aria-label="Choose region">
-                <% _regions.forEach(function(r){ %>
-                    <option value="<%= r.code %>" <%= _active === r.code ? 'selected' : '' %>><%= r.flag %> <%= r.label %></option>
-                <% }) %>
-            </select>
-            <% } %>
-            <div class="search">
-                <input class="search__input" type="text" name="q" placeholder="Search news…" aria-label="Search news" value="<%= _q %>">
-                <button class="search__btn" type="submit">Search</button>
-            </div>
-        </form>
+        <div class="topbar__actions">
+            <form class="toolbar" method="GET" action="/" role="search">
+                <% if (_regions.length) { %>
+                <select name="region" id="region-select" class="region__select" aria-label="Choose region">
+                    <% _regions.forEach(function(r){ %>
+                        <option value="<%= r.code %>" <%= _active === r.code ? 'selected' : '' %>><%= r.flag %> <%= r.label %></option>
+                    <% }) %>
+                </select>
+                <% } %>
+                <div class="search">
+                    <input class="search__input" type="text" name="q" placeholder="Search news…" aria-label="Search news" value="<%= _q %>">
+                    <button class="search__btn" type="submit">Search</button>
+                </div>
+            </form>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">
+                <svg class="icon icon--moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 14.4A8 8 0 1 1 9.6 4 6.5 6.5 0 0 0 20 14.4z" fill="currentColor"/>
+                </svg>
+                <svg class="icon icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/>
+                </svg>
+            </button>
+        </div>
     </div>
 </header>

@@ -20,7 +20,17 @@ if (region) {
     })
 }
 
-// 3. Category chip filtering.
+// 3. Theme toggle (light/dark) — persisted; initial theme is set by theme.js.
+var themeBtn = document.getElementById('theme-toggle')
+if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', next)
+        try { localStorage.setItem('theme', next) } catch (e) {}
+    })
+}
+
+// 4. Category chip filtering.
 document.addEventListener('click', function (e) {
     var chip = e.target.closest('.chip')
     if (!chip) return
