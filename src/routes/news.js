@@ -2,7 +2,7 @@ const express = require('express')
 const newsRouter = express.Router()
 require('dotenv').config()
 
-const { getNews, REGIONS, DEFAULT_REGION, regionByCode } = require('../services/news')
+const { getNews, REGIONS, DEFAULT_REGION, regionByCode, timeAgo } = require('../services/news')
 
 // Homepage + region browse + search — all via GET so URLs are shareable.
 // /            -> default region
@@ -17,6 +17,7 @@ newsRouter.get('', async (req, res) => {
         regions: REGIONS,
         activeRegion: region.code,
         activeRegionLabel: region.label,
+        timeAgo,
     }
 
     try {

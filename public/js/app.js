@@ -1,11 +1,11 @@
 // Progressive enhancement — no framework, CSP-safe (no inline handlers).
 
-// 1. Hide broken article images.
+// 1. Hide broken article images (cards + featured lead).
 function hideBroken(img) {
-    var media = img.closest('.card__media')
+    var media = img.closest('.card__media, .featured__media')
     if (media) media.classList.add('is-broken')
 }
-document.querySelectorAll('.card__media img').forEach(function (img) {
+document.querySelectorAll('.card__media img, .featured__media img').forEach(function (img) {
     img.addEventListener('error', function () { hideBroken(img) })
     if (img.complete && img.naturalWidth === 0) hideBroken(img)
 })
