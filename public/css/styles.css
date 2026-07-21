@@ -16,8 +16,10 @@
     --sans: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
+/* Dark palette — shared by system-dark (unless the user forced light) and the
+   manual "dark" toggle. */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --paper: #131110;
         --surface: #1c1917;
         --surface-2: #211d1a;
@@ -29,6 +31,19 @@
         --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 34px -18px rgba(0, 0, 0, .8);
         --shadow-hover: 0 2px 8px rgba(0, 0, 0, .5), 0 26px 56px -22px rgba(0, 0, 0, .9);
     }
+}
+
+:root[data-theme="dark"] {
+    --paper: #131110;
+    --surface: #1c1917;
+    --surface-2: #211d1a;
+    --ink: #f3efe8;
+    --ink-soft: #a89f92;
+    --line: #322c27;
+    --accent: #ff6a4d;
+    --accent-ink: #ff8f78;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 34px -18px rgba(0, 0, 0, .8);
+    --shadow-hover: 0 2px 8px rgba(0, 0, 0, .5), 0 26px 56px -22px rgba(0, 0, 0, .9);
 }
 
 * { box-sizing: border-box; }
@@ -232,6 +247,40 @@ a { color: inherit; }
 
 .search__btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
 .search__btn:active { transform: translateY(0); }
+
+/* ---------- Theme toggle ---------- */
+.topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    transition: color .15s, border-color .18s, box-shadow .18s, transform .1s;
+}
+.theme-toggle:hover {
+    color: var(--accent-ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+.theme-toggle:active { transform: scale(.94); }
+.theme-toggle svg { display: block; }
+
+/* Show the moon in light mode (click → dark), the sun in dark mode (click → light). */
+.theme-toggle .icon--sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon--sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon--moon { display: none; }
 
 /* ---------- Layout ---------- */
 .wrapper {
