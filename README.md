@@ -33,6 +33,8 @@ resources with no API key, no quota, and nothing to configure**.
   and defaults to your system preference.
 - 🛡️ **Production-grade** — response caching, security headers (Helmet), request
   logging, `/healthz` check, graceful fallbacks, and a styled 404 page.
+- ✅ **Tested & CI** — unit tests on Node's built-in runner (zero deps), run by
+  GitHub Actions on every push and pull request; Dependabot keeps deps current.
 
 ## 🖼️ Preview
 
